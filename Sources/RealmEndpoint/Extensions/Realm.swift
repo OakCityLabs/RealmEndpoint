@@ -1,25 +1,15 @@
 //
-//  File.swift
-//  
+//  Realm.swift
+//  RealmEndpoint
 //
 //  Created by Jay Lyerly on 11/5/19.
+//  Copyright © 2019 Oak City Labs. All rights reserved.
 //
 
 import Foundation
 import RealmSwift
 
 public extension Realm {
-    
-//    func remove(tags: [DataTaggable], from type: RealmEndpointObject.Type, in realm: Realm) {
-//        realm.beginWrite()
-//        remove(tags: tags, from: type)
-//        do {
-//            try realm.commitWrite()
-//        } catch {
-//            assertionFailure("Failed to commit write. \(error)")
-//            realm.cancelWrite()
-//        }
-//    }
     
     func remove(tags: [DataTaggable],
                 from type: RealmEndpointObject.Type,
@@ -44,17 +34,6 @@ public extension Realm {
             try commitWrite()
         }
     }
-
-//    func add(tags: [DataTaggable], to objs: [RealmEndpointObject], in realm: Realm) {
-//        realm.beginWrite()
-//        add(tags: tags, to: objs)
-//        do {
-//            try realm.commitWrite()
-//        } catch {
-//            assertionFailure("Failed to commit write. \(error)")
-//            realm.cancelWrite()
-//        }
-//    }
     
     func add(tags: [DataTaggable],
              to objs: [RealmEndpointObject],
