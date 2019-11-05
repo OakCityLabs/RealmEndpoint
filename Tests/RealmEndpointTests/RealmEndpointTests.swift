@@ -1,5 +1,5 @@
-import XCTest
 @testable import RealmEndpoint
+import XCTest
 
 final class RealmEndpointTests: XCTestCase {
     func testExample() {
@@ -10,6 +10,6 @@ final class RealmEndpointTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testExample", testExample),
+        ("testExample", testExample)
     ]
 }

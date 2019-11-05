@@ -12,7 +12,7 @@ let package = Package(
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
             name: "RealmEndpoint",
-            targets: ["RealmEndpoint"]),
+            targets: ["RealmEndpoint"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -28,6 +28,6 @@ let package = Package(
             dependencies: ["Endpoint", "RealmCoder", "Logging"]),
         .testTarget(
             name: "RealmEndpointTests",
-            dependencies: ["RealmEndpoint"]),
+            dependencies: ["RealmEndpoint"])
     ]
 )

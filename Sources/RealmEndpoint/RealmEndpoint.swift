@@ -1,4 +1,3 @@
-
 import Endpoint
 import Foundation
 import RealmCoder
@@ -101,4 +100,3 @@ extension RealmResource: RealmResultsProvider {
         return results
     }
 }
-
