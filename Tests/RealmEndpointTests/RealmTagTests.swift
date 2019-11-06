@@ -78,4 +78,9 @@ class RealmTagTests: XCTestCase {
         }
     }
     
+    static var allTests = [
+        ("testTags", testTags),
+        ("testCreate", testCreate)
+    ]
+    
 }

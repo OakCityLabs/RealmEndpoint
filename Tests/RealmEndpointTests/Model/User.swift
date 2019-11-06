@@ -8,7 +8,6 @@
 
 import Foundation
 import RealmEndpoint
-import RealmSwift
 
 class User: RealmEndpointBaseObject {
 
@@ -24,16 +23,37 @@ class User: RealmEndpointBaseObject {
     }
     
     static let sampleDict: [String: Any] = [
-        "firstName": "Larry",
-        "lastName": "Bird",
+        "firstName": "Barry",
+        "lastName": "Allen",
         "objId": "949-123"
     ]
     
     static let sampleJsonData: Data? = """
         {
             "id": "949-123",
-            "first_name": "Larry",
-            "last_name": "Bird"
+            "first_name": "Barry",
+            "last_name": "Allen"
         }
     """.data(using: .utf8)
+    
+    static let sampleJsonListData: Data? = """
+        [
+            {
+                "id": "949-456",
+                "first_name": "Conner",
+                "last_name": "Kent"
+            },
+            {
+                "id": "949-494",
+                "first_name": "Barry",
+                "last_name": "Allen"
+            },
+            {
+                "id": "949-123",
+                "first_name": "Wally",
+                "last_name": "West"
+            }
+        ]
+    """.data(using: .utf8)
+
 }

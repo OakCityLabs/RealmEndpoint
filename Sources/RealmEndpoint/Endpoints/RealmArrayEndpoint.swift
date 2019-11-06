@@ -11,36 +11,36 @@ import Foundation
 import RealmCoder
 import RealmSwift
 
-class RealmArrayEndpoint<Payload>: Endpoint<[Payload]> where Payload: RealmEndpointBaseObject {
+open class RealmArrayEndpoint<Payload>: Endpoint<[Payload]> where Payload: RealmEndpointBaseObject {
 
-    let config: Realm.Configuration
-    let dataTags: [DataTaggable]
-    let extractorFactory: ((Realm) -> Results<Payload>)?
+    public let config: Realm.Configuration
+    public let dataTags: [DataTaggable]
+    public let resultsFactory: ((Realm) -> Results<Payload>)?
     private let postParse: (([Payload], Realm) -> Void)?
 
-    init(realmConfig: Realm.Configuration,
-         dataTags: [DataTaggable] = [],
-         extract: ((Realm) -> Results<Payload>)? = nil,
-         serverUrl: URL?,
-         pathPrefix: String,
-         method: EndpointHttpMethod = .get,
-         objId: String? = nil,
-         pathSuffix: String? = nil,
-         queryParams: [String: String] = [:],
-         formParams: [String: String] = [:],
-         jsonParams: [String: Any] = [:],
-         mimeTypes: [String] = ["application/json"],
-         contentType: String? = nil,
-         statusCodes: [Int] = Array(200..<300),
-         username: String? = nil,
-         password: String? = nil,
-         body: Data? = nil,
-         dateFormatter: DateFormatter? = nil,
-         postParse: (([Payload], Realm) -> Void)? = nil) {
-
+    public init(realmConfig: Realm.Configuration,
+                dataTags: [DataTaggable] = [],
+                resultsFactory: ((Realm) -> Results<Payload>)? = nil,
+                serverUrl: URL?,
+                pathPrefix: String,
+                method: EndpointHttpMethod = .get,
+                objId: String? = nil,
+                pathSuffix: String? = nil,
+                queryParams: [String: String] = [:],
+                formParams: [String: String] = [:],
+                jsonParams: [String: Any] = [:],
+                mimeTypes: [String] = ["application/json"],
+                contentType: String? = nil,
+                statusCodes: [Int] = Array(200..<300),
+                username: String? = nil,
+                password: String? = nil,
+                body: Data? = nil,
+                dateFormatter: DateFormatter? = nil,
+                postParse: (([Payload], Realm) -> Void)? = nil) {
+        
         config = realmConfig
         self.dataTags = dataTags
-        self.extractorFactory = extract
+        self.resultsFactory = resultsFactory
         self.postParse = postParse
 
         super.init(serverUrl: serverUrl,
@@ -60,7 +60,8 @@ class RealmArrayEndpoint<Payload>: Endpoint<[Payload]> where Payload: RealmEndpo
                    dateFormatter: dateFormatter)
     }
     
-    override func parse(data: Data, page: Int = 0) throws -> [Payload] {
+    @discardableResult
+    override open func parse(data: Data, page: Int = 0) throws -> [Payload] {
         let realm = try Realm(configuration: config)
         if page == 0 {
             try realm.remove(tags: dataTags, from: Payload.self)
@@ -76,6 +77,10 @@ class RealmArrayEndpoint<Payload>: Endpoint<[Payload]> where Payload: RealmEndpo
         return objects
     }
 
+}
+
+extension RealmArrayEndpoint: RealmResultsProvider {
+    public typealias ObjType = Payload
 }
 
 //extension RealmArrayEndpoint: RealmResultsProvider {
@@ -96,7 +101,7 @@ class RealmArrayEndpoint<Payload>: Endpoint<[Payload]> where Payload: RealmEndpo
 //        
 //        var results = realm.objects(Payload.self)
 //        for dataTag in dataTags {
-//            results = results.filter("ANY realmTags.objId = \(dataTag.objId)")
+//            results = results.filter("ANY realmTags.objId = %@", dataTag.objId)
 //        }
 //        return results
 //    }

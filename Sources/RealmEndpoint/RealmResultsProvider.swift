@@ -9,15 +9,15 @@
 import Foundation
 import RealmSwift
 
-protocol RealmResultsProvider {
+public protocol RealmResultsProvider {
     associatedtype ObjType: Object
     var config: Realm.Configuration { get }
-    var extractorFactory: ((Realm) -> Results<ObjType>)? { get }
+    var resultsFactory: ((Realm) -> Results<ObjType>)? { get }
     var dataTags: [DataTaggable] { get }
     var results: Results<ObjType>? { get }
 }
 
-extension RealmResultsProvider where ObjType: RealmEndpointBaseObject {
+public extension RealmResultsProvider where ObjType: RealmEndpointBaseObject {
 
     var results: Results<ObjType>? {
         guard let realm = try? Realm(configuration: config) else {
@@ -28,13 +28,13 @@ extension RealmResultsProvider where ObjType: RealmEndpointBaseObject {
     }
     
     private func results(from realm: Realm) -> Results<ObjType> {
-        if let extractorFactory = extractorFactory {
+        if let extractorFactory = resultsFactory {
             return extractorFactory(realm)
         }
         
         var results = realm.objects(ObjType.self)
         for dataTag in dataTags {
-            results = results.filter("ANY realmTags.objId = \(dataTag.objId)")
+            results = results.filter("ANY realmTags.objId = %@", dataTag.objId)
         }
         return results
     }

@@ -19,12 +19,3 @@ open class RealmEndpointBaseObject: Object {
     }
     
 }
-
-public extension List where Element: RealmEndpointBaseObject {
-    
-    func contains(item: Element) -> Bool {
-        let idsList = self.map { return $0.objId }
-        return idsList.contains(item.objId)
-    }
-    
-}
