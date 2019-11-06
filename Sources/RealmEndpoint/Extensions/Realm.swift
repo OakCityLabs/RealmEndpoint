@@ -12,7 +12,7 @@ import RealmSwift
 public extension Realm {
     
     func remove(tags: [DataTaggable],
-                from type: RealmEndpointObject.Type,
+                from type: RealmEndpointBaseObject.Type,
                 inTransaction: Bool = true) throws {
         if inTransaction {
             beginWrite()
@@ -36,7 +36,7 @@ public extension Realm {
     }
     
     func add(tags: [DataTaggable],
-             to objs: [RealmEndpointObject],
+             to objs: [RealmEndpointBaseObject],
              inTransaction: Bool = true) throws {
         if inTransaction {
             beginWrite()

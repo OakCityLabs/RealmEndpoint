@@ -11,5 +11,31 @@ import RealmSwift
 
 protocol RealmResultsProvider {
     associatedtype ObjType: Object
+    var config: Realm.Configuration { get }
+    var extractorFactory: ((Realm) -> Results<ObjType>)? { get }
+    var dataTags: [DataTaggable] { get }
     var results: Results<ObjType>? { get }
+}
+
+extension RealmResultsProvider where ObjType: RealmEndpointBaseObject {
+
+    var results: Results<ObjType>? {
+        guard let realm = try? Realm(configuration: config) else {
+            assertionFailure("Could not create realm.")
+            return nil
+        }
+        return results(from: realm)
+    }
+    
+    private func results(from realm: Realm) -> Results<ObjType> {
+        if let extractorFactory = extractorFactory {
+            return extractorFactory(realm)
+        }
+        
+        var results = realm.objects(ObjType.self)
+        for dataTag in dataTags {
+            results = results.filter("ANY realmTags.objId = \(dataTag.objId)")
+        }
+        return results
+    }
 }

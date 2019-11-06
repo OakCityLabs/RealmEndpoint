@@ -10,7 +10,7 @@ import Foundation
 import RealmEndpoint
 import RealmSwift
 
-class User: RealmEndpointObject {
+class User: RealmEndpointBaseObject {
 
     @objc open dynamic var firstName: String = ""
     @objc open dynamic var lastName: String = ""

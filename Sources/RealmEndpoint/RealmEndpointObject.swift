@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-open class RealmEndpointObject: Object {
+open class RealmEndpointBaseObject: Object {
     @objc open dynamic var objId: String = "-1"
 
     open var realmTags = List<RealmTag>()
@@ -20,7 +20,7 @@ open class RealmEndpointObject: Object {
     
 }
 
-public extension List where Element: RealmEndpointObject {
+public extension List where Element: RealmEndpointBaseObject {
     
     func contains(item: Element) -> Bool {
         let idsList = self.map { return $0.objId }
