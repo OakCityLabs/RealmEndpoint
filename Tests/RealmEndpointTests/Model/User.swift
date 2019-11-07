@@ -11,9 +11,14 @@ import RealmEndpoint
 
 class User: RealmEndpointBaseObject {
 
+    @objc open dynamic var objId: String = "-1"    
     @objc open dynamic var firstName: String = ""
     @objc open dynamic var lastName: String = ""
 
+    override open class func primaryKey() -> String? {
+        return "objId"
+    }
+    
     override class var realmCodableKeys: [String: String] {
         return [
             "firstName": "first_name",

@@ -59,14 +59,3 @@ public extension Realm {
     
 }
 
-extension Object {
-    
-    func validObject() -> Self? {
-        if super.isInvalidated {          // hmmm, self.invalidated confuses the compiler
-            return nil
-        } else {
-            return self
-        }
-    }
-    
-}
