@@ -31,4 +31,9 @@ public extension RealmTag {
         }
         try realm.commitWrite()
     }
+    
+    class func create(fromTags tags: [DataTaggable], withConfig config: Realm.Configuration) throws {
+        let realm = try Realm(configuration: config)
+        try create(fromTags: tags, in: realm)
+    }
 }
