@@ -65,7 +65,7 @@ open class RealmObjectEndpoint<Payload: RealmEndpointBaseObject>: Endpoint<Paylo
     }
     
     @discardableResult
-    override open func parse(data: Data, page: Int = 0) throws -> Payload {
+    override open func parse(data: Data, page: Int = 1) throws -> Payload {
         let realm = try Realm(configuration: config)
         if page == 0 {
             try realm.remove(tags: dataTags, from: Payload.self)
