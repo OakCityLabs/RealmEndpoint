@@ -13,7 +13,7 @@ public protocol RealmResultsProvider {
     associatedtype ObjType: Object
     var config: Realm.Configuration { get }
     var resultsFactory: ((Realm) -> Results<ObjType>)? { get }
-    var dataTags: [DataTaggable] { get }
+    var dataTags: [RealmEndpointTaggable] { get }
     var results: Results<ObjType>? { get }
 }
 

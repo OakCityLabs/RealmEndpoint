@@ -13,7 +13,7 @@ import RealmSwift
 open class RealmObjectEndpoint<Payload: RealmEndpointBaseObject>: Endpoint<Payload> {
 
     public let config: Realm.Configuration
-    public let dataTags: [DataTaggable]
+    public let dataTags: [RealmEndpointTaggable]
     public let resultsFactory: ((Realm) -> Results<Payload>)?
     private let postParse: ((Payload, Realm) -> Void)?
     
@@ -22,7 +22,7 @@ open class RealmObjectEndpoint<Payload: RealmEndpointBaseObject>: Endpoint<Paylo
     }
     
     public init(realmConfig: Realm.Configuration,
-                dataTags: [DataTaggable] = [],
+                dataTags: [RealmEndpointTaggable] = [],
                 resultsFactory: ((Realm) -> Results<Payload>)? = nil,
                 serverUrl: URL?,
                 pathPrefix: String,

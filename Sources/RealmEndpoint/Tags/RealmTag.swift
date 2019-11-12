@@ -20,7 +20,7 @@ open class RealmTag: Object {
 }
 
 public extension RealmTag {
-    class func create(fromTags tags: [DataTaggable], in realm: Realm) throws {
+    class func create(fromTags tags: [RealmEndpointTaggable], in realm: Realm) throws {
         realm.beginWrite()
         tags.forEach { (tag) in
             let value: [String: Any] = [
@@ -32,7 +32,7 @@ public extension RealmTag {
         try realm.commitWrite()
     }
     
-    class func create(fromTags tags: [DataTaggable], withConfig config: Realm.Configuration) throws {
+    class func create(fromTags tags: [RealmEndpointTaggable], withConfig config: Realm.Configuration) throws {
         let realm = try Realm(configuration: config)
         try create(fromTags: tags, in: realm)
     }

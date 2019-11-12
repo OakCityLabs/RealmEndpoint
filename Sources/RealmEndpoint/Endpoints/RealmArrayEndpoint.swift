@@ -14,12 +14,12 @@ import RealmSwift
 open class RealmArrayEndpoint<Payload>: Endpoint<[Payload]> where Payload: RealmEndpointBaseObject {
 
     public let config: Realm.Configuration
-    public let dataTags: [DataTaggable]
+    public let dataTags: [RealmEndpointTaggable]
     public let resultsFactory: ((Realm) -> Results<Payload>)?
     private let postParse: (([Payload], Realm) -> Void)?
 
     public init(realmConfig: Realm.Configuration,
-                dataTags: [DataTaggable] = [],
+                dataTags: [RealmEndpointTaggable] = [],
                 resultsFactory: ((Realm) -> Results<Payload>)? = nil,
                 serverUrl: URL?,
                 pathPrefix: String,

@@ -9,7 +9,7 @@
 import Foundation
 import RealmEndpoint
 
-enum DataTag: String, DataTaggable, CaseIterable {
+enum DataTag: String, RealmEndpointTaggable, CaseIterable {
     
     var objId: String {
         return rawValue
