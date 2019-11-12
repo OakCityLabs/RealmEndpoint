@@ -86,27 +86,3 @@ open class RealmObjectEndpoint<Payload: RealmEndpointBaseObject>: Endpoint<Paylo
 extension RealmObjectEndpoint: RealmResultsProvider {
     public typealias ObjType = Payload
 }
-
-//extension RealmObjectEndpoint: RealmResultsProvider {
-//    typealias ObjType = Payload
-//
-//    var results: Results<Payload>? {
-//        guard let realm = try? Realm(configuration: config) else {
-//            assertionFailure("Could not create realm.")
-//            return nil
-//        }
-//        return results(from: realm)
-//    }
-//    
-//    private func results(from realm: Realm) -> Results<Payload> {
-//        if let extractClosure = extractorFactory {
-//            return extractClosure(realm)
-//        }
-//        
-//        var results = realm.objects(Payload.self)
-//        for dataTag in dataTags {
-//            results = results.filter("ANY realmTags.objId = %@", dataTag.objId)
-//        }
-//        return results
-//    }
-//}

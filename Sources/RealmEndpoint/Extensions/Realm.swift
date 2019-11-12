@@ -56,5 +56,14 @@ public extension Realm {
             try commitWrite()
         }
     }
-    
+
+    // Convenience methods to get a result set for an object type filtered by a primary key.
+    // These results set count should always be zero or one.
+    func results<T: Object>(_ clz: T.Type, primaryKey key: Any) -> Results<T> {
+        guard let attrName = T.primaryKey() else {
+            return objects(T.self).filter(NSPredicate(value: false))    // Empty set
+        }
+        return objects(T.self).filter("%K == %@", attrName, key)
+    }
+
 }
