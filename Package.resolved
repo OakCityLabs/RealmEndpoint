@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/OakCityLabs/Endpoint.git",
         "state": {
           "branch": null,
-          "revision": "8b1f5e89846fad2749e7bb7eb24e4ddf1ab4c327",
-          "version": "1.0.4"
+          "revision": "6c37e20d0476b6ce2d0239f2325668ba90ad29ac",
+          "version": "1.0.5"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/realm/realm-cocoa.git",
         "state": {
           "branch": null,
-          "revision": "40732f2ec0cdc32d9d3df8219b2e655deb3077f1",
-          "version": "3.21.0"
+          "revision": "fa43b8e2909334c79f233ce472332c136ca108da",
+          "version": "4.4.1"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/realm/realm-core",
         "state": {
           "branch": null,
-          "revision": "512dfaa4f59930e193c92e00ba1924bde69b19de",
-          "version": "5.23.5"
+          "revision": "35662ff940e340bf630ad1d1d88acfc7af18bee6",
+          "version": "5.23.8"
         }
       },
       {
@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/OakCityLabs/RealmCoder.git",
         "state": {
           "branch": null,
-          "revision": "4c808c41205e46d4fde8dfe10b52939b448a8bcc",
-          "version": "1.0.1"
+          "revision": "8730ac1a45811fff4df2907adde5f1347a813ed4",
+          "version": "1.0.2"
         }
       },
       {
